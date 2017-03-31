@@ -1,0 +1,100 @@
+
+
+<style>
+.el {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color:green;
+  position: absolute;
+  opacity: 0.7;
+}
+
+#spinner {
+  position: absolute;
+  top:50%; left: 50%;
+}
+
+#el2 {
+  left: 50px;
+  animation: moveleft 1s infinite alternate;
+}
+
+#el1 {
+  animation: moveright 1s infinite alternate;
+}
+
+#el3 {
+  left: 25px;
+  top: -25px;
+  animation: movedown 1s infinite alternate;
+}
+
+#el4 {
+  left:25px;
+  top: 25px;
+  animation: moveup 1s infinite alternate;
+}
+
+#el5 {
+  left:43px;
+  top: -18px;
+}
+#el6 {
+  left:43px;
+  top: 18px;
+  animation: moveleftup 1s infinite alternate;
+}
+
+#el7 {
+  left:7px;
+  top: 18px;
+}
+
+#el8 {
+  left:7px;
+  top: -18px;
+  animation: movedownright 1s infinite alternate;
+}
+
+@keyframes movedownright {
+  from {transform: translate(0px,0px)}
+  to {transform: translate(36px,36px)}
+}
+
+@keyframes moveleftup {
+  from {transform: translate(0px,0px)}
+  to {transform: translate(-36px,-36px)}
+}
+
+@keyframes moveleft {
+  from {transform: translateX(0)}
+  to {transform: translateX(-50px)}
+}
+
+@keyframes moveright {
+  from {transform: translateX(0)}
+  to {transform: translateX(50px)}
+}
+
+@keyframes moveup {
+  from {transform: translateY(0)}
+  to {transform: translateY(-50px)}
+}
+@keyframes movedown {
+  from {transform: translateY(0)}
+  to {transform: translateY(50px)}
+}
+
+</style>
+
+<div id="spinner">
+  <div class="el" id="el1"></div>
+  <div class="el" id="el2"></div>
+  <div class="el" id="el3"></div>
+  <div class="el" id="el4"></div>
+  <div class="el" id="el5"></div>
+  <div class="el" id="el6"></div>
+  <div class="el" id="el7"></div>
+  <div class="el" id="el8"></div>
+</div>
