@@ -106,3 +106,71 @@ Ecco il codice che risolve completamente il primo punto:
   </body>
 </html>
 ```
+
+
+Ok, ora passiamo al punto 2: dobbiamo fare in modo che quado clicchiamo sul nostro "cronografo", questo cominci ad incrementare il suo valore, di un'unità al secondo.
+
+Qui, l'avrete intuito, serve qualche incantesimo javascript!
+
+Partiamo per gradi, per riscaldarci: facciamo in modo che, cliccando sul cronografo, questo passi da `0` a `1`.
+
+Per prima cosa, specifichiamo che vogliamo caricare `jquery`. Immaginiamo di avere messo il file di `jquery` nella stessa cartella del file `html`, e di averlo chiamato `jquery.min.js`. Per caricarlo, ci basta specificare, nell'elemento `head`: 
+
+```html
+    <script src="jquery.min.js"></script>
+```
+
+Ora prepariamo l'incantesimo per scrivere `1` nel cronografo. Chiamiamolo già `conta`, in vista del fatto che sarà la funzione che chiameremo per far partire il conteggio. Mettiamo la definizione della funzione in fondo al `body`
+
+```html
+    <body>
+    [...]
+        <script>
+        function conta() {
+            $("#chrono").text(1)
+        }
+    </script>
+    </body>
+```
+
+La funzione `conta` usa l'operatore `$` per individuare l'elemento con `id` uguale a `chrono`, e per cambiargli il testo con il _metodo_ `text`
+
+Ora colleghiamo il click su `#chrono` all'invocazione della funzione `conta`:
+
+```javascript
+    $("#chrono").on("click", conta)
+```
+
+Provate: ora cliccando sul cronografo il valore dovrebbe cambiare in `1`
+
+Bene, ora che ci siamo riscaldati, possiamo provare a risolvere il punto 2: fare in modo che il cronografo aumenti di 1 ogni secondo.
+
+Un possibile ragionamento potrebbe essere: definiamo una _variabile_ con la quale tenere il conto:
+
+```javascript
+    var t = 0;
+```
+
+Quindi, facciamo in modo che `conta` incrementi la variabile, e poi aggiorni il testo di `#chrono`:
+
+```javascript
+function conta() {
+    t = t + 1;
+    $("#chrono").text(t)
+}
+
+```
+
+Provate a fare così: caricate la pagina, aprite la console, e invocate la funzione `conta()`. Dovreste vedere che il valore si incrementa.
+Questo però non basta, ovviamente! Vogliamo che la funzione venga invocata ogni secondo! Usiamo allora un trucco che abbiamo già visto: `conta` si richiama dopo un secondo, usando `setTimeout`:
+
+```javascript
+function conta() {
+    t = t + 1;
+    $("#chrono").text(t)
+    setTimeout(conta, 1000)
+}
+
+```
+
+Ora, per vedere se tutto funziona, invochiamo la funzione `conta` alla fine dello script, e clicchiamo sul cronografo. Dovremmo vedere il cronografo contare, e ci siamo portati a casa anche questi due ghiotti punti!
