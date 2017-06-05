@@ -1,0 +1,76 @@
+html
+    head
+        script(src="jquery.min.js")
+        style.
+            #chrono {
+                font-family: Arial;
+                font-size: 30px;
+                border: 1px black dashed;
+                border-radius: 50%;
+                height: 100px; width: 100px;
+                position: absolute;
+                text-align: center;
+                left: 50%; top: 50%;
+                transform: translate(-50%,-50%);
+            }
+            #time {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%,-50%)
+            }
+
+            @keyframes rotate {
+                from {transform: rotate(0deg)}
+                to {transform: rotate(360deg)}
+            }
+
+            .rotating {
+                animation: rotate 1s infinite linear;
+            }
+            #satellite {
+                position: absolute;
+                height: 30px; width: 30px;
+                background-color: red;
+                transform-origin: 50px 50px;
+                border-radius: 50%;
+            }
+
+            #elapsed {
+                position: absolute;
+                top: 0; right: 0;
+                font-family: Arial;
+                font-size: 30px;
+            }
+    body
+        #chrono
+            #time 0
+            #satellite
+        #elapsed
+        script.
+            var t = 0;
+            var vai = 0;
+
+            function conta() {
+                $("#time").text(t);
+                t = t + 1;
+                if(vai == 1)
+                    setTimeout(conta, 1000);
+            }
+
+            function chronoClick() {
+                if(vai == 0) {
+                    vai = 1;
+                    conta();
+                    $("#satellite").addClass("rotating");
+                } else {
+                    vai = 0; 
+                    $("#elapsed").text(t);
+                    $("#satellite").removeClass("rotating");
+                }
+            }
+
+            $("#time").on("click",chronoClick)
+        
+
+        
+

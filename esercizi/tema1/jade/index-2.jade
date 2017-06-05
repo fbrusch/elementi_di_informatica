@@ -1,0 +1,32 @@
+html
+    head
+        script(src="jquery.min.js")
+        style.
+            #chrono {
+                font-family: Arial;
+                font-size: 30px;
+                border: 1px black dashed;
+                border-radius: 50%;
+                height: 100px; width: 100px;
+                position: absolute;
+                line-height: 100px;
+                text-align: center;
+                left: 50%; top: 50%;
+                transform: translate(-50%,-50%);
+            }
+    body
+        #chrono 0
+        script.
+            var t = 0;
+
+            function conta() {
+                $("#chrono").text(t);
+                t = t + 1;
+                setTimeout(conta, 1000);
+            }
+
+            $("#chrono").on("click",conta)
+        
+
+        
+
