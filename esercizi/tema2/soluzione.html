@@ -1,0 +1,73 @@
+
+<html>
+  <head>
+    <script src="jquery.min.js"></script>
+    <style>
+      #v1 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+      }
+      
+      #v234 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+      }
+      
+      #v2 {
+          display: none;
+      } 
+      
+      #v3 {
+          display: none;
+      }
+      
+      
+      #v4 {
+          display: none;
+      }
+      
+      @keyframes pulsa {
+          from {opacity: 0}
+          to {opacity: 1}
+      }
+      
+      .pulsating {
+          animation: pulsa 1s infinite alternate;
+      }
+      
+      
+    </style>
+  </head>
+  <body>
+    <p id="v1">i will wade out</p>
+    <div id="v234">
+      <p id="v2">till my thighs are steeped in burning flowers</p>
+      <p id="v3">I will take the sun in my mouth</p>
+      <p id="v4" class="pulsating">and leap into the ripe air</p>
+    </div>
+    <script>
+      function hoverV1() {
+          $("#v1").animate({"top": "49%"})
+          $("#v2").fadeIn()
+      }
+      function clickV2() {
+          $("#v3").fadeIn()
+      }
+      
+      function clickV3() {
+          $("#v4").fadeIn()
+      }
+      
+      function clickV4() {
+          $("#v4").toggleClass("pulsating")
+      }
+      
+      $("#v1").on("mouseover", hoverV1)
+      $("#v2").on("click", clickV2)
+      $("#v3").on("click", clickV3)
+      $("#v4").on("click", clickV4)
+    </script>
+  </body>
+</html>
