@@ -1,0 +1,74 @@
+
+<html>
+  <head>
+    <script src="jquery.min.js"></script>
+    <style>
+      #chrono {
+          position: absolute;
+          top:50%; left:50%;
+          font-size: 60px;
+          font-family: arial;
+      }
+      #chrono1 {
+          display: inline-block;
+          position:relative;
+          left: -20px;
+          cursor: pointer;
+      }
+      #chrono2 {
+          position: relative;
+          display: inline-block;
+          left: 20px;
+          cursor: pointer;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="chrono">
+      <div id="chrono1">0 </div>
+      <div id="chrono2">0 </div>
+    </div>
+    <script>
+      var t1 = 0;
+      var t2 = 0;
+      var counting1 = 0;
+      var counting2 = 0;
+      
+      function conta1() {
+          t1 = t1 + 1;
+         $("#chrono1").text(t1)
+         if(counting1 == 1) {
+             setTimeout(conta1, 100)
+             }
+      }
+      
+      function conta2() {
+          t2 = t2 + 1;
+         $("#chrono2").text(t2)
+         if(counting2 == 1) {
+             setTimeout(conta2, 200)
+             }
+      }
+      
+      function click1() {
+          if(counting1 == 0) {
+                  counting1 = 1;
+                  counting2 = 0;
+                  conta1();
+          }
+      }
+      
+      function click2() {
+          if(counting2 == 0) {
+                  counting2 = 1;
+                  counting1 = 0;
+                  conta2();
+          }
+      }
+      
+      $("#chrono1").on("click", click1)
+      $("#chrono2").on("click", click2)
+    </script>
+  </body>
+</html>
