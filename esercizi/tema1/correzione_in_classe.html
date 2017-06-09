@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <script src="jquery.min.js"></script>
+        <style>
+            #chrono {
+                font-family: sans-serif, Verdana;
+                font-size: 30px;
+                position: absolute;
+                top: 50%; left: 50%;
+                border: 1px black dashed;
+                border-radius: 50%;
+                width: 100px; height: 100px;
+                transform: translate(-50%, -50%);
+                <!--text-align: center;-->
+                <!--line-height: 100px;-->
+            }
+            #time {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            #intermedio {
+                position: absolute;
+                top: 0%; right: 0%;
+                font-size:40px;
+            }
+
+            @keyframes ruota {
+                from {transform: rotate(0)}
+                to {transform: rotate(360deg)}
+            }
+
+            .rotating {
+                animation: ruota 1s infinite linear;  
+            }
+
+            #satellite {
+                height: 10px; width: 10px;
+                background-color: red;
+                border-radius: 50%;
+                transform-origin: 50px 50px;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <div id="chrono">
+            <div id="time">0</div>
+            <div id="satellite"></div>
+        </div>
+        <div id="intermedio">
+            tempo intermedio
+        </div>
+        <script>
+
+            var t = 0;
+            var stoContando = 0;
+
+            function conta() {
+                t = t + 1;
+                $("#time").text(t)
+                if(stoContando == 1)
+                    setTimeout(conta, 1000);
+            }
+
+            function chronoClick() {
+                if (stoContando == 0) {
+                    stoContando = 1;
+                    $("#satellite").addClass("rotating")
+                    conta(); 
+                } else {
+                    $("#intermedio").text(t)
+                    $("#satellite").removeClass("rotating")
+                    stoContando = 0;
+                } 
+            }
+
+            $("#chrono").on("click", chronoClick)
+        
+        
+        </script>
+    </body>
+
+</html>
