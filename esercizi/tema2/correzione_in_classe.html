@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <script src="jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Garamond;
+                font-size: 2em;
+            }
+
+            @keyframes pulsa {
+                from {opacity: 0}
+                to {opacity: 1}
+            }
+
+
+            #primo {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            #primo.alzato {
+                transform: translate(-50%, -200%);
+                transition: 1s;
+            }
+            #secondo {
+                position: absolute;
+                top:50%; left: 50%;
+                transform: translate(-50%, -50%);
+                filter: blur(50px);
+                width: 100vw;
+                text-align: center;
+                <!--opacity: 0;-->
+
+            }
+            #secondo.presente {
+                transform: translate(-50%, -50%);
+                filter: blur(0px);
+                transition: 1s;
+                <!--opacity: 1;-->
+            }
+            #terzo {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, +51%);
+                filter: blur(50px);
+            }
+            #terzo.presente {
+                filter: blur(0px);
+                transition: 1s;
+            }
+            #quarto {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, 150%);
+                filter: blur(50px);
+            }
+            #quarto.presente {
+                filter: blur(0px);
+                transition: 1s;
+                animation: pulsa 1s infinite alternate;
+            }
+            #quarto.presente_no_pulsa {
+                filter: blur(0px);
+            }
+
+        
+        </style>
+    </head>
+    <body>
+        <div id="quarto">and leap into the ripe air</div>
+        <div id="terzo">I will take the sun in my mouth</div>
+        <div id="secondo">`Till my thighs are steeped in burning flowers</div>
+        <div id="primo">I will wade out</div>
+        <script>
+
+            function alzaPrimo() {
+                $("#primo").addClass("alzato")
+                $("#secondo").addClass("presente")
+                $("#secondo").on("click", appariTerzo)
+                <!--secondo_visible = 1;-->
+            }
+
+            function appariQuarto() {
+                $("#quarto").addClass("presente")
+                $("#quarto").on("click", stopPulsaQuarto)
+            }
+
+            function appariTerzo() {
+                    $("#terzo").addClass("presente")
+                    $("#terzo").on("click", appariQuarto)
+            }
+
+            function stopPulsaQuarto() {
+                $("#quarto").removeClass("presente");
+                $("#quarto").addClass("presente_no_pulsa");
+
+            }
+
+            $("#primo").on("mouseover", alzaPrimo)
+            
+        
+        </script>
+    </body>
+
+
+</html>
