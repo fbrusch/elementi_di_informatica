@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <script src="jquery.min.js"></script>
+        <style>
+            #sipario {
+                background-color:white;
+                overflow: hidden;
+                font-family: Arial;
+                position: absolute;
+                top: 0; left: 0;
+                width: 100vw; height: 100vh;
+            }
+
+            #sipario.alzato {
+                transform: translate(0, -100vh);
+            }
+
+            #sotto {
+                overflow: hidden;
+                font-family: Arial;
+                position: absolute;
+                top: 0; left: 0;
+                width: 100vw; height: 100vh;
+            }
+            #primo {
+                border: 1px solid black;
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                width: 20em; height: 20em;
+                text-align: center;
+                background-color: black;
+                color: white;
+                font-family: Arial;
+                line-height: 20em;
+            }
+            #secondo {
+                position: absolute;
+                top:50%; left:50%;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 20em;
+                transform: translate(200vw, -50%);
+                width: 20em; height: 20em;
+                background-color: white;
+            }
+            
+            #secondo.dentro {
+                transform: translate(-50%, -50%);
+                transition: 1s;
+            }
+            #primo.fuori-sinistra {
+                transform: translate(-100vw, -50%);
+                transition: 1s;
+            }
+            #sipario.nero {
+                background-color: black;
+                transition: 1s;
+            }
+            #terzo {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                filter: blur(100px);
+            }
+            #terzo.dentro {
+                filter: blur(0px);
+                transition: 1s;
+            }
+            #secondo.fuori-blur {
+                filter: blur(40px);
+                transition: 1s;
+            }
+            #completa {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="sotto">
+            <div id="completa">
+                <div>Spesso il male di vivere ho incontrato</div>
+                <div>era il rivo strozzato che gorgoglia</div>
+                <div>era l'incartocciarsi della foglia</div>
+                <div>riarsa, era il cavallo stramazzato.</div>
+            </div>
+        </div>
+        <div id="sipario">
+            <div id="secondo">era il rivo strozzato che gorgoglia</div>
+            <div id="terzo">era l'incartocciarsi della foglia</div>
+            <div id="primo">Spesso il male di vivere ho incontrato</div>
+        </div>
+
+        <script>
+
+        var terzo_gia_dentro = 0;
+
+        function fuoriPrimo() {
+            $("#primo").addClass("fuori-sinistra")
+            $("#secondo").addClass("dentro")
+            $("#sipario").addClass("nero")
+        }
+        $("#primo").on("click", fuoriPrimo);
+
+        function terzoClick() {
+            if(terzo_gia_dentro == 0) {
+                $("#terzo").addClass("dentro")
+                $("#secondo").addClass("fuori-blur")
+                terzo_gia_dentro = 1;
+            } else {
+                $("#sipario").addClass("alzato")
+            }
+        }
+        $("#terzo").on("click", terzoClick)
+        </script>
+    </body>
+</html>
