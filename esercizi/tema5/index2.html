@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            @keyframes ruota {
+                0% {transform: rotate(0)}
+                50% {transform: rotate(3600deg)}
+                100% {transform: rotate(0deg)}
+            }
+
+            #frame {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                height: 100px; width: 100px;
+                transition: 1s;
+            }
+
+            #orbita { 
+                animation: ruota 20s linear infinite;
+                border-radius: 50%;
+                border: 1px dashed blue;
+                height: 100%; width: 100%;
+            }
+
+            #frame:hover {
+                height: 200px; width: 200px;
+                transition: 1s;
+            }
+
+            #satellite {
+                height: 30px; width: 30px;
+                background-color: red;
+                border-radius: 50%;
+            }
+        </style>
+    
+    </head>
+    <body>
+        <div id="frame">
+            <div id="orbita">
+                <div id="satellite"></div>
+            </div>
+        </div>
+    </body>
+</html>

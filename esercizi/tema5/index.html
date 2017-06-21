@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <script src="jquery.min.js"></script>
+        <style>
+            @keyframes orbita {
+                from {transform: rotate(0deg) translate(50px, 50px)}
+                to {transform: rotate(360deg) translate(50px, 50px)}
+            }
+            @keyframes orbita-piccola {
+                from {transform: rotate(0deg) translate(18px, 18px)}
+                to {transform: rotate(360deg) translate(18px, 18px)}
+            }
+            @keyframes orbita-grande {
+                from {transform: rotate(0deg) translate(100px, 100px)}
+                to {transform: rotate(360deg) translate(100px, 100px)}
+            }
+            #centro {
+                z-index: 1;
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: black;
+                height: 10px; width: 10px;
+                border-radius: 50%;
+            } 
+            #satellite {
+                position: absolute;
+                border-radius:50%;
+                top: 50%; left: 50%;
+                height: 30px; width: 30px;
+                background-color: red;
+                animation: orbita 1s infinite linear;
+                transform-origin: 0px 0px;
+            }
+            #satellite.orbitante-piccolo {
+                animation: orbita-piccola 0.4s infinite linear;
+                transition: 0.5s;
+            }
+            #satellite.orbitante-grande {
+                animation: orbita-grande 2s infinite linear;
+                transition: 0.5s;
+            }
+            #orbita {
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                width: 180px; height:180px;
+                border-radius: 50%;
+                border: 1px dashed blue;
+                transition: 0.5s;
+            }
+            #orbita.piccola {
+                width: 90px;
+                height: 90px;
+                transition: 0.5s;
+            }
+
+            #orbita.grande {
+                width: 330px;
+                height: 330px;
+                transition: 0.5s;
+            }
+        
+        </style>
+    </head>
+    <body>
+    <div id="satellite"></div> 
+    <div id="centro"></div> 
+    <div id="orbita"></div>
+    <script>
+
+        var dimensioneOrbita = 0;
+        function dimezzaOrbita() {
+            $("#orbita").addClass("piccola");
+            $("#satellite").addClass("orbitante-piccolo")
+        }
+
+        function quadruplicaOrbita() {
+            $("#orbita").removeClass("piccola");
+            $("#satellite").removeClass("orbitante-piccolo")
+            $("#orbita").addClass("grande");
+            $("#satellite").addClass("orbitante-grande")
+        }
+
+        function normalizzaOrbita() {
+            $("#orbita").removeClass("grande");
+            $("#satellite").removeClass("orbitante-grande");
+        }
+        
+        function centroCliccato() {
+            if(dimensioneOrbita == 0) {
+                dimezzaOrbita();
+                dimensioneOrbita = 1;
+            } else if(dimensioneOrbita == 1) {
+                quadruplicaOrbita();
+                dimensioneOrbita = 2;
+            } else if(dimensioneOrbita == 2) {
+                normalizzaOrbita();
+                dimensioneOrbita = 0;
+            }
+        }
+
+        $("#centro").on("click", centroCliccato);
+    </script>
+    
+    </body>
+</html>
